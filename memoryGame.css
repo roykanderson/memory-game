@@ -1,0 +1,55 @@
+body {
+    /* box model */
+    margin: 0;
+    padding: 0;
+    /* color */
+    background: #bab6a8;
+    font-family: Helvetica, Arial sans-serif;
+}
+
+/* Header */
+h1 {
+    /* box model */
+    margin: 4rem 0;
+    /* text */
+    font: 6rem/0.5rem Helvetica, Arial sans-serif;
+    font-weight: lighter;
+    color: #444a4f;
+    /* positioning */
+    text-align: center;
+}
+
+/* Game container */
+#game-container {
+    /* box model */
+    width: 70vh;
+    height: 70vh;
+    margin: 0 auto 15px auto;
+
+    /* grid */
+    display: grid;
+    gap: 2%;
+}
+
+/* tiles */
+.tile {
+    /* color */
+    background: #828486;
+    /* box-model */
+    box-sizing: border-box;
+    border: solid 2px #444a4f;
+    /* overflow */
+    overflow: hidden;
+}
+
+.tile:hover {
+    /* color */
+    background: #929394;
+}
+
+img {
+    object-fit: cover;
+    /* size */
+    width: 100%;
+    height: 100%;
+}
