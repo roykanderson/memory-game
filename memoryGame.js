@@ -15,7 +15,7 @@ function ImgSrc(imgSrcObject) {
                     subset.push(this.getElement(rand));
                 }
             }
-            return subset;
+            return subset.slice();
         }
     };
 }
@@ -76,3 +76,4 @@ let src = new ImgSrc([
     {src: "img/hippo.png", use: 0}
 ]);
 let board = new Board(4);
+let view = new View();
