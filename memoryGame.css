@@ -3,11 +3,13 @@ body {
     margin: 0;
     padding: 0;
     /* color */
-    background: #bab6a8;
+    background: #f7f7f7;
+    color: #444a4f;
     font-family: Helvetica, Arial sans-serif;
 }
 
 /* Header */
+
 h1 {
     /* box model */
     margin: 4rem 0;
@@ -19,6 +21,49 @@ h1 {
     text-align: center;
 }
 
+/* Menu container */
+#menu-container {
+    /* box model */
+    width: 40%;
+    margin: auto;
+    padding-top: 30px;
+    /* text */
+    text-align: center;
+}
+
+#menu-container > div {
+    /* flexbox */
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+button {
+    /* box model */
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+
+    /* color */
+    background-color: #444a4f;
+    /* font */
+    font-size: 20px;
+    color: #f7f7f7;
+}
+
+button:hover {
+    background-color: #5f676e;
+}
+
+button:focus {
+    outline: none;
+}
+
+p {
+    font-size: 25px;
+}
+
 /* Game container */
 #game-container {
     /* box model */
@@ -27,33 +72,32 @@ h1 {
     margin: 0 auto 15px auto;
 
     /* grid */
-    display: grid;
+    display: none;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2%;
+    gap: 3%;
 }
 
 /* tiles */
 .tile {
     /* color */
-    background: #828486;
+    background: #444a4f;
     /* box-model */
     box-sizing: border-box;
     border: solid 2px #444a4f;
     /* overflow */
     overflow: hidden;
-    max-width: 100%;
-    height: auto;
 }
 
 .tile:hover {
     /* color */
     background: #929394;
+    border-color: #929394;
 }
 
 img {
     object-fit: cover;
-    /* display: none; */
+    display: none;
     /* size */
     width: 100%;
     height: 100%;

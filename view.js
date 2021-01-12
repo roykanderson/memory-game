@@ -1,7 +1,19 @@
 class View {
-    constructor(boardSize) {
-        this.boardSize;
-        this.setGrid(boardSize);
+    constructor() {
+        this.menu = document.querySelector("#menu-container");
+        this.game = document.querySelector("#game-container");
+        // populateGrid()
+    }
+
+    displayMenu() {
+        this.menu.style.display = "block";
+        this.game.style.display = "none";
+    }
+
+    displayGame(size) {
+        this.setGrid(size);
+        this.game.style.display = "grid";
+        this.menu.style.display = "none";
     }
 
     setGrid(boardSize) {
@@ -16,8 +28,8 @@ class View {
         grid.style.gridTemplateColumns = gridTemplate;
     }
 
-    flipTile(x, y) {
-        let tileImage = document.querySelector("#pic" + x + y);
+    flipTile(row, col) {
+        let tileImage = document.querySelector("#pic" + row + col);
         if (tileImage.style.display === "inline-block") {
             tileImage.style.display = "none";
         } else {
