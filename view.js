@@ -2,7 +2,6 @@ class View {
     constructor() {
         this.menu = document.querySelector("#menu-container");
         this.game = document.querySelector("#game-container");
-        // populateGrid()
     }
 
     displayMenu() {
@@ -12,6 +11,7 @@ class View {
 
     displayGame(size) {
         this.setGrid(size);
+        this.populateGrid(Math.pow(size, 2));
         this.game.style.display = "grid";
         this.menu.style.display = "none";
     }
@@ -28,8 +28,34 @@ class View {
         grid.style.gridTemplateColumns = gridTemplate;
     }
 
-    flipTile(row, col) {
-        let tileImage = document.querySelector("#pic" + row + col);
+    populateGrid(numTiles) {
+        let tileDivs = [];
+        for (let i = 0; i < numTiles; i++) {
+            tileDivs.push(this.getNewTile(i));
+        }
+        let game = document.querySelector("#game-container");
+        for (let i = 0; i < numTiles; i++) {
+            game.appendChild(tileDivs[i]);
+        }
+    }
+
+    getNewTile(index) {
+        let newElement = document.createElement("div");
+        newElement.setAttribute("class", "tile");
+
+        let img = document.createElement("img");
+        img.setAttribute("class", "pic");
+        img.setAttribute("id", "pic" + index);
+        img.setAttribute("src", model.tiles[index].src);
+        img.setAttribute("alt", model.tiles[index].src);
+
+        newElement.appendChild(img);
+
+        return newElement;
+    }
+
+    flipTile(index) {
+        let tileImage = document.querySelector("#pic" + index);
         if (tileImage.style.display === "inline-block") {
             tileImage.style.display = "none";
         } else {

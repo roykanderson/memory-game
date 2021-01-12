@@ -2,7 +2,6 @@ class Controller {
     // constructor
     constructor(boardSize) {
         this.boardSize = boardSize;
-        this.setTileClickHandlers();
         this.setButtonClickHandlers();
     }
 
@@ -16,28 +15,31 @@ class Controller {
 
     handleTileClick(event) {
         let picId = event.currentTarget.firstElementChild.id;
-        let row = picId.charAt(3);
-        let col = picId.charAt(4);
+        let index = picId.substr(3);
         // if (tile in question has not already been successfully matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-            view.flipTile(row, col);
+            view.flipTile(index);
     }
 
     setButtonClickHandlers() {
         let buttons = document.querySelectorAll("button");
         for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("click", this.handleButtonClick);
+            buttons[i].addEventListener("click", this.handleButtonClick.bind(this));
         }
     }
 
     handleButtonClick(event) {
         let buttonId = event.target.id;
         if (buttonId === "button4x4") {
+            model.populateTiles(8);
             view.displayGame(4);
         } else {
+            model.populateTiles(18);
             view.displayGame(6);
         }
+        this.setTileClickHandlers();
     }
 }
 
-let controller = new Controller(4);
-let view = new View(4);
+let model = new Model();
+let controller = new Controller();
+let view = new View();
