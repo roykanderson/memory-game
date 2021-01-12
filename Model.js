@@ -14,8 +14,8 @@ class Model {
 
     // randomly generates srcs for the board
     populateTiles(numSources) {
-        let sources = this.getRandomSources(numSources);
-        sources.forEach(element => {
+        let sourcesCopy = this.getRandomSources(numSources);
+        sourcesCopy.forEach(element => {
             this.tiles.push(new Tile(element[0]));
         });
     }
@@ -44,5 +44,42 @@ class Model {
             array[rand] = temp;
         }
         return array;
+    }
+
+    //  takes in the index of a tile, changes the bool value of this.flipped
+    markTileFlip(index) {
+        if (this.flipped) {
+            this.tiles[index].flipped = false;
+        } else {
+            this.tiles[index].flipped = true;
+        }
+    }
+
+    // takes in the index of a tile, changes this.matched to true
+    markTileMatch(index) {
+        this.tiles[index].matched = true;
+    }
+
+    // takes in an index of tiles, returns false if that tile has already been matched or flipped for the turn
+    checkFlipable(index) {
+        if ((this.tiles[index].flipped === true && this.tiles[index].matched === false) || this.tiles[index].matched === true) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    // takes in an array with two indices, checks if the pics at those indices match, updates tile state accordingly
+    checkMatch(indices) {
+        let first = indices[0], second = indices[1];
+        if (this.tiles[first].src === this.tiles[second].src) {
+            this.markTileMatch(first);
+            this.markTileMatch(second);
+            return true;
+        } else {
+            this.markTileFlip(first);
+            this.markTileFlip(second);
+            return false;
+        }
     }
 }
