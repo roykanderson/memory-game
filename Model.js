@@ -48,11 +48,7 @@ class Model {
 
     //  takes in the index of a tile, changes the bool value of this.flipped
     markTileFlip(index) {
-        if (this.flipped) {
-            this.tiles[index].flipped = false;
-        } else {
-            this.tiles[index].flipped = true;
-        }
+        this.tiles[index].flip();
     }
 
     // takes in the index of a tile, changes this.matched to true
@@ -63,9 +59,9 @@ class Model {
     // takes in an index of tiles, returns false if that tile has already been matched or flipped for the turn
     checkFlipable(index) {
         if ((this.tiles[index].flipped === true && this.tiles[index].matched === false) || this.tiles[index].matched === true) {
+            console.log("unflipable");
             return false;
         }
-        
         return true;
     }
 

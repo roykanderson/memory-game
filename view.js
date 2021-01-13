@@ -62,4 +62,24 @@ class View {
             tileImage.style.display = "inline-block";
         }
     }
+
+    displayMatch(index1, index2) {
+        let tile1 = document.querySelector("#pic" + index1);
+        let tile2 = document.querySelector("#pic" + index2);
+        console.log(tile1);
+        console.log(tile2);
+        tile1.parentElement.style.border = "solid 2px #3fab5c";
+        tile2.parentElement.style.border = "solid 2px #3fab5c";
+    }
+
+    displayNoMatch(index1, index2) {
+        let tile1 = document.querySelector("#pic" + index1);
+        let tile2 = document.querySelector("#pic" + index2);
+        tile1.parentElement.style.border = "solid 2px #db7d74";
+        tile2.parentElement.style.border = "solid 2px #db7d74";
+        setTimeout(() => {
+            tile1.parentElement.style.border = "solid 2px #444a4f";
+            tile2.parentElement.style.border = "solid 2px #444a4f";
+        }, 1250);
+    }
 }

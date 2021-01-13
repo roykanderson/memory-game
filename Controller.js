@@ -38,35 +38,23 @@ class Controller {
 
     // calls model.markTileFlip(index) and view.flipTile(index), updates this.gameState and this.currentFlips
     flipTile(index) {
-        model.markTileFlip(index);
-        view.flipTile(index);
-        this.currentFlips.push(index);
-        this.checkMatch();
+        if (this.currentFlips.length !== 2) {
+            model.markTileFlip(index);
+            view.flipTile(index);
+            this.currentFlips.push(index);
+            this.checkMatch();
+        }
     }
 
-    flipTiles(index1, index2) {
-        console.log(this);
-        model.markTileFlip(index1);
-        model.markTileFlip(index2);
-        view.flipTile(index1);
-        view.flipTile(index2);
-        this.currentFlips = [];
-        this.updateState();
-    }
-
-    //
     checkMatch() {
         if (this.updateState() === 2) {
             if (model.checkMatch(this.currentFlips)) {
-                console.log("matched");
-                // view.match(this.currentFlips);
+                view.displayMatch(this.currentFlips[0], this.currentFlips[1]);
+                this.currentFlips = [];
+                this.updateState();
             } else {
-                console.log("no match");
-                // this.flipTiles(this.currentFlips[0], this.currentFlips[1])
+                view.displayNoMatch(this.currentFlips[0], this.currentFlips[1]);
                 setTimeout((index1, index2) => {
-                    console.log(this);
-                    model.markTileFlip(index1);
-                    model.markTileFlip(index2);
                     view.flipTile(index1);
                     view.flipTile(index2);
                     this.currentFlips = [];
