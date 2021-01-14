@@ -23,6 +23,7 @@ class Controller {
         }
     }
 
+    // event listener for when the user clicks a tile
     handleTileClick(event) {
         let index = this.getPicIdString(event);
         if (model.checkFlipable(index)) {
@@ -46,6 +47,7 @@ class Controller {
         }
     }
 
+    // checks if the two tiles stored in tiles stored in currentFlips match, updates game accordingly
     checkMatch() {
         if (this.updateState() === 2) {
             if (model.checkMatch(this.currentFlips)) {
